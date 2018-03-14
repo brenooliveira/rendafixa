@@ -15,4 +15,8 @@ defmodule RendaFixa.Taxas do
   def put(taxas, key, value) do
     Agent.update(taxas, &Map.put(&1, key, value))
   end
+
+  def delete(taxas, key) do
+    Agent.get_and_update(taxas, &Map.pop(&1, key))
+  end
 end

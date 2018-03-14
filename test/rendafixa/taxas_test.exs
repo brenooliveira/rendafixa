@@ -13,4 +13,11 @@ defmodule RendaFixa.TaxasTest do
     RendaFixa.Taxas.put(taxas, "selic", 6.75)
     assert RendaFixa.Taxas.get(taxas, "selic") == 6.75
   end
+
+  test "deleta taxa pela chava", %{taxas: taxas} do
+    RendaFixa.Taxas.put(taxas,"selic", 6.75)
+    assert RendaFixa.Taxas.delete(taxas, "selic") == 6.75
+
+    assert RendaFixa.Taxas.get(taxas, "selic") == nil
+  end
 end
