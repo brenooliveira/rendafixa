@@ -20,4 +20,11 @@ defmodule RendaFixa.TaxasTest do
 
     assert RendaFixa.Taxas.get(taxas, "selic") == nil
   end
+
+  test "deleta taxas ao encerrar", %{taxas: taxas} do
+    RendaFixa.Registry.create(taxas, "selic")
+    {:ok, taxas} = RendaFixa.Registry.lookup(taxas, "selic")
+    Agent.stop(taxas)
+    assert RendaFixa.Registry.lookup(taxas, "selic") == :error
+  end
 end
